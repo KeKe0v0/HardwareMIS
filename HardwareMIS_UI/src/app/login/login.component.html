@@ -1,0 +1,42 @@
+<div class="logo">
+  <img src="assets/image/logo.png" height="100%" width="100%" />
+</div>
+<div class="login-dashboard">
+  <div class="username">
+    <div class="input-label">员工编号</div>
+    <div class="input-area">
+      <input
+        dTextInput
+        placeholder="员工编号"
+        class="input-control"
+        [(ngModel)]="staffId"
+      />
+    </div>
+  </div>
+  <div class="password">
+    <div class="input-label">密码</div>
+    <d-form-control class="input-area" [suffixTemplate]="suffixTemplate">
+      <input
+        dTextInput
+        placeholder="密码"
+        [type]="showPassword ? 'text' : 'password'"
+        class="input-control"
+        [(ngModel)]="password"
+      />
+      <ng-template #suffixTemplate>
+        <i
+          [class]="
+            showPassword ? 'icon icon-preview' : 'icon icon-preview-forbidden'
+          "
+          (click)="showPassword = !showPassword"
+        ></i>
+      </ng-template>
+    </d-form-control>
+  </div>
+  <div class="login-button">
+    <d-button class="button-control" (btnClick)="login()">登录</d-button>
+    <d-button class="button-control" bsStyle="common" (btnClick)="register()"
+      >注册</d-button
+    >
+  </div>
+</div>

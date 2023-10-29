@@ -1,0 +1,56 @@
+<div [dMovable]="true" [handle]="header" [moveEl]="parent">
+  <div class="header" #header>入库处理</div>
+  <div class="body">
+    <d-data-table
+      [dataSource]="purchasingDetailList"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead>
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+          <tr dTableRow>
+            <td dTableCell>{{ rowIndex + 1 }}</td>
+            <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+              {{ rowItem[colOption.field] }}
+            </td>
+            <td dTableCell>
+              <div
+                *ngIf="rowItem['status'] === '待入库'"
+                (click)="stockIn(rowItem['purchasingDetailId'])"
+                style="color: blue; cursor: pointer"
+              >
+                入库
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+  <div class="footer">
+    <d-button (btnClick)="close($event)" bsStyle="primary" circled="true"
+      >关闭</d-button
+    >
+  </div>
+</div>
+
+<ng-template
+  #shipment
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-shipment
+    (changeValueEvent)="changeValue($event)"
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+  ></app-shipment>
+</ng-template>

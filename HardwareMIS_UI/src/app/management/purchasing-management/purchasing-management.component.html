@@ -1,0 +1,77 @@
+<div>
+  <div class="header-button">
+    <d-button class="button-control" (btnClick)="openNewProduct()"
+      >新品采购</d-button
+    >
+    <d-button class="button-control" (btnClick)="openStockoutPurchasing()"
+      >缺货处理</d-button
+    >
+  </div>
+  <div>
+    <d-data-table
+      [dataSource]="purchasingList"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead>
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+          <tr dTableRow>
+            <td dTableCell>{{ rowIndex + 1 }}</td>
+            <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+              {{ rowItem[colOption.field] }}
+            </td>
+            <td dTableCell>
+              <div
+                (click)="openPurchasingDetail(rowItem['purchasingId'])"
+                style="color: blue; cursor: pointer"
+              >
+                明细
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+</div>
+
+<ng-template
+  #newProduct
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-new-product
+    (changeValueEvent)="changeValue($event)"
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+  ></app-new-product>
+</ng-template>
+
+<ng-template #purchasingDetail let-modalInstance="modalInstance">
+  <app-purchasing-detail
+    [purchasingId]="purchasingId"
+    [modalInstance]="modalInstance"
+  >
+  </app-purchasing-detail>
+</ng-template>
+
+<ng-template
+  #stockoutPurchasing
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-stockout-purchasing
+    (changeValueEvent)="changeStockoutPurchasingValue($event)"
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+  ></app-stockout-purchasing>
+</ng-template>

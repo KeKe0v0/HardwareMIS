@@ -1,0 +1,40 @@
+<div style="height: 30dvi">
+  <div>
+    <d-data-table
+      [dataSource]="inventoryListData"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead>
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+          <tr
+            dTableRow
+            [ngClass]="{
+              'table-row-selected': rowItem['hardwareId'] === selectedHardwareId
+            }"
+          >
+            <td dTableCell (click)="rowSelect(rowItem['hardwareId'])">
+              {{ rowIndex + 1 }}
+            </td>
+            <td
+              dTableCell
+              *ngFor="let colOption of dataTableOptions.columns"
+              (click)="rowSelect(rowItem['hardwareId'])"
+            >
+              {{ rowItem[colOption.field] }}
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+</div>

@@ -1,0 +1,160 @@
+<div style="height: 40dvi">
+  <div class="row">
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">供应商</div>
+        <d-form-control class="input-area" [suffixTemplate]="suffixTemplate">
+          <input
+            dTextInput
+            placeholder="供应商"
+            class="input-control"
+            [(ngModel)]="supplierId"
+            (change)="changeValue()"
+          />
+          <ng-template #suffixTemplate>
+            <div
+              (click)="openSelectSupplier()"
+              style="color: blue; cursor: pointer; padding-right: 0.2dvi"
+            >
+              选择
+            </div>
+          </ng-template>
+        </d-form-control>
+      </div>
+    </div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+  <div class="sale-group" style="height: 16dvi">
+    <div class="row">
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">类型</div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">型号</div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">品牌</div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">采购单价</div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">数量</div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngFor="let saleitem of purchasingGroup; let i = index">
+      <div class="column">
+        <div class="input-module">
+          <div class="input-area">
+            {{ saleitem.type }}
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-area">
+            {{ saleitem.model }}
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-area">
+            {{ saleitem.brand }}
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-area">
+            <input
+              dTextInput
+              placeholder="采购单价"
+              class="input-control"
+              [(ngModel)]="saleitem.purchasingPrice"
+              (change)="changeValue()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-area">
+            <input
+              dTextInput
+              placeholder="数量"
+              class="input-control"
+              [(ngModel)]="saleitem.restockNumber"
+              (change)="changeValue()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height: 20dvi">
+    <d-data-table
+      [dataSource]="restockList"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead [checkable]="true">
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template
+          let-rowItem="rowItem"
+          let-rowIndex="rowIndex"
+          let-nestedIndex="nestedIndex"
+        >
+          <tr dTableRow>
+            <td dTableCell class="devui-checkable-cell">
+              <d-checkbox
+                [ngModelOptions]="{ standalone: true }"
+                [ngModel]="rowItem.$checked"
+                [halfchecked]="rowItem.$halfChecked"
+                (ngModelChange)="
+                  onRowCheckChange($event, rowIndex, nestedIndex, rowItem)
+                "
+              >
+              </d-checkbox>
+            </td>
+            <td dTableCell>{{ rowIndex + 1 }}</td>
+            <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+              {{ rowItem[colOption.field] }}
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+</div>
+
+<ng-template
+  #selectSupplier
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-select-supplier
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+    (selectedSupplierIdEvent)="selectedSupplier($event)"
+  ></app-select-supplier>
+</ng-template>

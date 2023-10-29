@@ -1,0 +1,52 @@
+<div>
+  <div class="row">
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">硬件编号</div>
+        <d-form-control class="input-area" [suffixTemplate]="suffixTemplate">
+          <input
+            dTextInput
+            placeholder="硬件编号"
+            class="input-control"
+            [(ngModel)]="hardwareId"
+            (change)="changeValue()"
+          />
+        </d-form-control>
+      </div>
+    </div>
+    <ng-template #suffixTemplate>
+      <div
+        (click)="openSelectHardware(i)"
+        style="color: blue; cursor: pointer; padding-right: 0.2dvi"
+      >
+        选择
+      </div>
+    </ng-template>
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">补货数量</div>
+        <div class="input-area">
+          <input
+            dTextInput
+            placeholder="补货数量"
+            class="input-control"
+            [(ngModel)]="restockNumber"
+            (change)="changeValue()"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template
+  #selectHardware
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-select-hardware
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+    (selectedHardwareIdEvent)="selectedHardware($event)"
+  ></app-select-hardware>
+</ng-template>

@@ -1,0 +1,6 @@
+<div class="sys-header">
+  {{ title }}
+  <span class="page-name">{{ pageName }}</span>
+  <span *ngIf="path !== '/login'" class="logout" (click)="logout()">注销</span>
+</div>
+<router-outlet></router-outlet>

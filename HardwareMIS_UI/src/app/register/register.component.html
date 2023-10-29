@@ -1,0 +1,132 @@
+<div class="logo">
+  <img src="assets/image/logo.png" height="100%" width="100%" />
+</div>
+<div class="register-dashboard">
+  <div class="username">
+    <div class="input-label">密码</div>
+    <d-form-control class="input-area" [suffixTemplate]="suffixTemplate">
+      <input
+        dTextInput
+        placeholder="密码"
+        [type]="showPassword ? 'text' : 'password'"
+        class="input-control"
+        [(ngModel)]="password"
+      />
+      <ng-template #suffixTemplate>
+        <i
+          [class]="
+            showPassword ? 'icon icon-preview' : 'icon icon-preview-forbidden'
+          "
+          (click)="showPassword = !showPassword"
+        ></i>
+      </ng-template>
+    </d-form-control>
+  </div>
+  <div class="username">
+    <div class="input-label">确认密码</div>
+    <d-form-control class="input-area" [suffixTemplate]="suffixTemplate2th">
+      <input
+        dTextInput
+        placeholder="确认密码"
+        [type]="showPassword2th ? 'text' : 'password'"
+        class="input-control"
+        [(ngModel)]="password2th"
+      />
+      <ng-template #suffixTemplate2th>
+        <i
+          [class]="
+            showPassword2th
+              ? 'icon icon-preview'
+              : 'icon icon-preview-forbidden'
+          "
+          (click)="showPassword2th = !showPassword2th"
+        ></i>
+      </ng-template>
+    </d-form-control>
+  </div>
+  <div class="username">
+    <div class="input-label">姓名</div>
+    <div class="input-area">
+      <input
+        dTextInput
+        placeholder="姓名"
+        class="input-control"
+        [(ngModel)]="name"
+      />
+    </div>
+  </div>
+  <div class="username">
+    <div class="input-label">性别</div>
+    <div class="input-area">
+      <d-radio-group
+        [name]="'sex-group'"
+        [values]="sexChose"
+        [direction]="'row'"
+        [(ngModel)]="sex"
+      ></d-radio-group>
+    </div>
+  </div>
+  <div class="username">
+    <div class="input-label">出生日期</div>
+    <div class="input-area">
+      <input
+        class="devui-input devui-form-control"
+        placeholder="出生日期"
+        (click)="datePicker.toggle()"
+        name="dp"
+        [(ngModel)]="birthday"
+        autocomplete="off"
+        dDatepicker
+        #datePicker="datepicker"
+      />
+      <div
+        *ngIf="birthday"
+        class="devui-input-group-addon close-icon-wrapper"
+        (click)="datePicker.clearAll()"
+      >
+        <i class="icon icon-close"></i>
+      </div>
+      <div class="devui-input-group-addon" (click)="datePicker.toggle()">
+        <i class="icon icon-calendar"></i>
+      </div>
+    </div>
+  </div>
+  <div class="username">
+    <div class="input-label">电话</div>
+    <div class="input-area">
+      <input
+        dTextInput
+        placeholder="电话"
+        class="input-control"
+        [(ngModel)]="telephone"
+      />
+    </div>
+  </div>
+  <div class="username">
+    <div class="input-label">邮箱</div>
+    <div class="input-area">
+      <input
+        dTextInput
+        placeholder="邮箱"
+        class="input-control"
+        [(ngModel)]="email"
+      />
+    </div>
+  </div>
+  <div class="password">
+    <div class="input-label">所属部门</div>
+    <div class="input-area">
+      <d-select
+        [placeholder]="'所属部门'"
+        [options]="options"
+        [(ngModel)]="departmentId"
+      ></d-select>
+    </div>
+  </div>
+  <div class="login-button">
+    <d-button class="button-control" bsStyle="common" (btnClick)="back()"
+      >返回</d-button
+    >
+    <d-button class="button-control" (btnClick)="submit()">提交</d-button>
+  </div>
+</div>

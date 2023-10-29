@@ -1,0 +1,38 @@
+.row {
+  display: flex;
+  width: 100%;
+}
+.column {
+  display: flex;
+  flex: 1;
+  margin: 1dvi;
+
+  &.button-column {
+    margin: unset;
+    max-width: 10dvi;
+  }
+}
+
+.input-module {
+  width: 100%;
+}
+
+.sale-group {
+  padding: 0.6dvi;
+  border: 0.02dvi solid #cccccc;
+}
+
+.add-sale-group {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  margin: 0.6dvi;
+}
+
+.delete-sale-group {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: end;
+  margin-bottom: 0.7dvi;
+}

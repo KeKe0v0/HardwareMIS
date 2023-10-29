@@ -1,0 +1,59 @@
+<div>
+  <div class="header-button">
+    <d-button class="button-control" (btnClick)="openNewSaleOrder()"
+      >新建销售订单</d-button
+    >
+  </div>
+  <div>
+    <d-data-table
+      [dataSource]="saleList"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead>
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+          <tr dTableRow>
+            <td dTableCell>{{ rowIndex + 1 }}</td>
+            <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+              {{ rowItem[colOption.field] }}
+            </td>
+            <td dTableCell>
+              <div
+                (click)="openSaleDetail(rowItem['saleId'])"
+                style="color: blue; cursor: pointer"
+              >
+                明细
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+</div>
+
+<ng-template
+  #newSaleOrder
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-new-sale-order
+    (changeValueEvent)="changeValue($event)"
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+  ></app-new-sale-order>
+</ng-template>
+
+<ng-template #saleDetail let-modalInstance="modalInstance">
+  <app-sale-detail [saleId]="saleId" [modalInstance]="modalInstance">
+  </app-sale-detail>
+</ng-template>

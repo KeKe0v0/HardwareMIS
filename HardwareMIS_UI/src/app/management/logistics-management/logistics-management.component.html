@@ -1,0 +1,25 @@
+<div>
+  <div class="header-button" style="justify-content: center">
+    <d-button
+      class="button-control"
+      (btnClick)="showTab = 'TransportationManagement'"
+      bsStyle="common"
+      >发货管理</d-button
+    >
+    <span style="font-size: 1.4dvi; font-weight: lighter; color: #cccccc"
+      >|</span
+    >
+    <d-button
+      class="button-control"
+      (btnClick)="showTab = 'ReceivingManagement'"
+      bsStyle="common"
+      >收货管理</d-button
+    >
+  </div>
+  <div *ngIf="showTab === 'TransportationManagement'">
+    <app-transportation-management></app-transportation-management>
+  </div>
+  <div *ngIf="showTab === 'ReceivingManagement'">
+    <app-receiving-management></app-receiving-management>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+.logo {
+  width: 48dvi;
+  height: 40dvi;
+}
+
+.login-dashboard {
+  border: 0.04dvi solid #d7d8da;
+  border-radius: 0.8dvi;
+  box-shadow: 0 10px 24px #252b3a1f;
+  width: 28dvi;
+  padding: 2dvi;
+  position: absolute;
+  right: 8dvi;
+  top: 14dvi;
+}
+
+.username {
+  margin-bottom: 1dvi;
+}
+
+.password {
+  margin-bottom: 2dvi;
+}
+
+.login-button {
+  display: flex;
+  justify-content: end;
+}

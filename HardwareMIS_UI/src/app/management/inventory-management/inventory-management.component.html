@@ -1,0 +1,80 @@
+<div>
+  <div class="header-button">
+    <d-button class="button-control" (btnClick)="openRestock()"
+      >补货申请</d-button
+    >
+    <d-button class="button-control" (btnClick)="openStockOut()"
+      >出库处理</d-button
+    >
+    <d-button class="button-control" (btnClick)="openStockIn()"
+      >入库处理</d-button
+    >
+  </div>
+  <div>
+    <d-data-table
+      [dataSource]="inventoryListData"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead>
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+          <tr dTableRow>
+            <td dTableCell>{{ rowIndex + 1 }}</td>
+            <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+              {{ rowItem[colOption.field] }}
+            </td>
+            <td dTableCell>
+              <div
+                (click)="openSetPrice(rowItem['hardwareId'])"
+                style="color: blue; cursor: pointer"
+              >
+                价格设定
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+</div>
+
+<ng-template #restock let-modalInstance="modalInstance">
+  <app-restock [modalInstance]="modalInstance"> </app-restock>
+</ng-template>
+
+<ng-template #stockOut let-modalInstance="modalInstance">
+  <app-stock-out
+    (closeEvent)="closeStockModal()"
+    [modalInstance]="modalInstance"
+  >
+  </app-stock-out>
+</ng-template>
+<ng-template #stockIn let-modalInstance="modalInstance">
+  <app-stock-in
+    (closeEvent)="closeStockModal()"
+    [modalInstance]="modalInstance"
+  >
+  </app-stock-in>
+</ng-template>
+
+<ng-template
+  #setPrice
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-set-price
+    (changeValueEvent)="changeValue($event)"
+    [selectDepartmentId]="selectDepartmentId"
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+  ></app-set-price>
+</ng-template>

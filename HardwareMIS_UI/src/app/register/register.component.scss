@@ -1,0 +1,66 @@
+.logo {
+  width: 48dvi;
+  height: 40dvi;
+}
+
+.register-dashboard {
+  border: 0.04dvi solid #d7d8da;
+  border-radius: 0.8dvi;
+  box-shadow: 0 10px 24px #252b3a1f;
+  width: 28dvi;
+  padding: 1dvi 2dvi;
+  position: absolute;
+  right: 8dvi;
+  top: 4.6dvi;
+}
+
+.username {
+  margin-bottom: 1dvi;
+}
+
+.password {
+  margin-bottom: 2dvi;
+}
+
+.login-button {
+  display: flex;
+  justify-content: end;
+}
+
+:host::ng-deep.devui-dropdown-menu:not(.ng-trigger) {
+  top: 20dvi !important;
+  right: 2dvi !important;
+  left: unset !important;
+
+  .devui-month-view {
+    width: 24dvi !important;
+  }
+
+  .devui-date-title,
+  .devui-week-header > td,
+  .devui-calendar-date {
+    font-size: 1dvi !important;
+  }
+
+  .devui-week-header > td,
+  .devui-day {
+    padding: 0.4dvi !important;
+  }
+
+  .devui-date-header > td {
+    padding: 0.4dvi !important;
+  }
+
+  .devui-calendar-date {
+    display: flex !important;
+    margin: unset !important;
+    width: 100% !important;
+    height: 2dvi !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .time-picker-view > td {
+    padding: 0.4dvi 1dvi !important;
+  }
+}

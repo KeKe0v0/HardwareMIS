@@ -1,0 +1,45 @@
+<div>
+  <div>
+    <d-data-table
+      [dataSource]="staffListData"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead>
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+          <tr dTableRow>
+            <td dTableCell>{{ rowIndex + 1 }}</td>
+            <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+              {{ rowItem[colOption.field] }}
+            </td>
+            <td dTableCell>
+              <div
+                *ngIf="rowItem['status'] === '待审批'"
+                (click)="approved(rowItem['staffId'], rowItem['departmentId'])"
+                style="color: blue; cursor: pointer"
+              >
+                审批通过
+              </div>
+              <div
+                *ngIf="rowItem['staffId'] !== 'admin'"
+                (click)="delete(rowItem['staffId'])"
+                style="color: blue; cursor: pointer"
+              >
+                删除
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+</div>

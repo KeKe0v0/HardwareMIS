@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+@import "/node_modules/ng-devui/styles-var/devui-var.scss";
+@import "/node_modules/@devui-design/icons/icomoon/devui-icon.css";
+
+html,
+body {
+  height: 100%;
+  background-color: #ffffff;
+  font-size: 1dvi;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.input-label {
+  font-size: 0.8dvi;
+}
+
+.input-area {
+  display: flex;
+}
+
+.input-control {
+  height: 1.8dvi;
+  font-size: 1dvi;
+  border-width: 0.08dvi;
+  border-radius: 0.2dvi;
+  padding: 0.1dvi 0.6dvi;
+}
+
+.devui-form-item-suffix {
+  width: 3dvi !important;
+}
+
+button {
+  margin: 0.2dvi 0.4dvi;
+  padding: 0 0.4dvi !important;
+  height: 2dvi !important;
+  min-width: 8dvi !important;
+  border-width: 0.08dvi !important;
+  border-radius: 0.2dvi !important;
+
+  span {
+    font-size: 1dvi !important;
+  }
+}
+
+.devui-form-control-container {
+  width: 100%;
+}
+
+.devui-form-controls input {
+  height: 1.8dvi !important;
+  font-size: 1dvi !important;
+  border-width: 0.08dvi !important;
+  border-radius: 0.2dvi !important;
+  padding: 0.1dvi 0.6dvi;
+}
+
+.devui-input-group-addon {
+  border-width: 0.08dvi !important;
+  border-radius: 0.2dvi !important;
+  padding: 0 0.6dvi;
+}
+
+.devui-input {
+  height: 1.8dvi !important;
+  font-size: 1dvi !important;
+  border-width: 0.08dvi !important;
+  border-radius: 0.2dvi !important;
+  padding: 0.1dvi 0.6dvi;
+}
+
+d-select {
+  width: 100%;
+}
+
+.devui-form-control-feedback {
+  width: 2dvi !important;
+}
+
+.devui-dropdown-origin {
+  min-height: unset !important;
+  height: 2dvi !important;
+  border-width: 0.08dvi !important;
+  border-radius: 0.2dvi !important;
+}
+
+.devui-dropdown-item {
+  font-size: 1dvi !important;
+  min-height: unset !important;
+  height: 2.8dvi;
+  font-size: 1dvi !important;
+  line-height: unset !important;
+  padding: 0.6dvi 1dvi !important;
+}
+
+.devui-table {
+  .title {
+    font-size: 1dvi !important;
+  }
+
+  td {
+    font-size: 1dvi !important;
+  }
+}
+
+.header-button {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  padding: 2dvi;
+}

@@ -1,0 +1,25 @@
+<div>
+  <div class="header-button" style="justify-content: center">
+    <d-button
+      class="button-control"
+      (btnClick)="showTab = 'DepartmentManagement'"
+      bsStyle="common"
+      >部门管理</d-button
+    >
+    <span style="font-size: 1.4dvi; font-weight: lighter; color: #cccccc"
+      >|</span
+    >
+    <d-button
+      class="button-control"
+      (btnClick)="showTab = 'StaffManagement'"
+      bsStyle="common"
+      >员工管理</d-button
+    >
+  </div>
+  <div *ngIf="showTab === 'DepartmentManagement'">
+    <app-department-management></app-department-management>
+  </div>
+  <div *ngIf="showTab === 'StaffManagement'">
+    <app-staff-management></app-staff-management>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div>
+  <div>
+    <d-data-table
+      [dataSource]="saleList"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead>
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+          <tr dTableRow>
+            <td dTableCell>{{ rowIndex + 1 }}</td>
+            <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+              {{ rowItem[colOption.field] }}
+            </td>
+            <td dTableCell>
+              <div
+                *ngIf="rowItem['status'] === '待发货'"
+                (click)="openShipment(rowItem['saleId'])"
+                style="color: blue; cursor: pointer"
+              >
+                发货
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+</div>
+
+<ng-template
+  #shipment
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-shipment
+    (changeValueEvent)="changeValue($event)"
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+  ></app-shipment>
+</ng-template>

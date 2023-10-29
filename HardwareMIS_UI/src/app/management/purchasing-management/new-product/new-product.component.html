@@ -1,0 +1,126 @@
+<div>
+  <div class="row">
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">供应商</div>
+        <d-form-control class="input-area" [suffixTemplate]="suffixTemplate">
+          <input
+            dTextInput
+            placeholder="供应商"
+            class="input-control"
+            [(ngModel)]="supplierId"
+            (change)="changeValue()"
+          />
+          <ng-template #suffixTemplate>
+            <div
+              (click)="openSelectSupplier()"
+              style="color: blue; cursor: pointer; padding-right: 0.2dvi"
+            >
+              选择
+            </div>
+          </ng-template>
+        </d-form-control>
+      </div>
+    </div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+  <div class="add-sale-group">
+    <d-button (btnClick)="add()" bsStyle="primary" circled="true"
+      >增加</d-button
+    >
+  </div>
+  <div class="sale-group">
+    <div class="row" *ngFor="let saleitem of purchasingGroup; let i = index">
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">类型</div>
+          <div class="input-area">
+            <input
+              dTextInput
+              placeholder="类型"
+              class="input-control"
+              [(ngModel)]="saleitem.type"
+              (change)="changeValue()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">型号</div>
+          <div class="input-area">
+            <input
+              dTextInput
+              placeholder="型号"
+              class="input-control"
+              [(ngModel)]="saleitem.model"
+              (change)="changeValue()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">品牌</div>
+          <div class="input-area">
+            <input
+              dTextInput
+              placeholder="品牌"
+              class="input-control"
+              [(ngModel)]="saleitem.brand"
+              (change)="changeValue()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">采购单价</div>
+          <div class="input-area">
+            <input
+              dTextInput
+              placeholder="采购单价"
+              class="input-control"
+              [(ngModel)]="saleitem.purchasingPrice"
+              (change)="changeValue()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">数量</div>
+          <div class="input-area">
+            <input
+              dTextInput
+              placeholder="数量"
+              class="input-control"
+              [(ngModel)]="saleitem.pruchasingNumber"
+              (change)="changeValue()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column button-column">
+        <div class="delete-sale-group">
+          <d-button (btnClick)="delete(i)" bsStyle="common" circled="true"
+            >删除</d-button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template
+  #selectSupplier
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-select-supplier
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+    (selectedSupplierIdEvent)="selectedSupplier($event)"
+  ></app-select-supplier>
+</ng-template>

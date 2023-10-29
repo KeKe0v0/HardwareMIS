@@ -1,0 +1,53 @@
+<div style="height: 40dvi">
+  <div class="header" #header>补货申请</div>
+  <div class="header-button">
+    <d-button class="button-control" (btnClick)="openNewRestock()"
+      >新建申请</d-button
+    >
+  </div>
+  <div class="body">
+    <d-data-table
+      [dataSource]="restockListData"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead>
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+          <tr dTableRow>
+            <td dTableCell>{{ rowIndex + 1 }}</td>
+            <td dTableCell *ngFor="let colOption of dataTableOptions.columns">
+              {{ rowItem[colOption.field] }}
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+  <div class="footer">
+    <d-button (btnClick)="close($event)" bsStyle="primary" circled="true"
+      >关闭</d-button
+    >
+  </div>
+</div>
+
+<ng-template
+  #newRestock
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-new-restock
+    (changeValueEvent)="changeValue($event)"
+    [selectDepartmentId]="selectDepartmentId"
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+  ></app-new-restock>
+</ng-template>

@@ -1,0 +1,32 @@
+<div>
+  <div class="input-label">联系人</div>
+  <d-form-control class="input-area" [suffixTemplate]="suffixTemplate">
+    <input
+      dTextInput
+      placeholder="联系人"
+      class="input-control"
+      [(ngModel)]="staffId"
+    />
+    <ng-template #suffixTemplate>
+      <div
+        (click)="openSelectStaff()"
+        style="color: blue; cursor: pointer; padding-right: 0.2dvi"
+      >
+        选择
+      </div>
+    </ng-template>
+  </d-form-control>
+</div>
+
+<ng-template
+  #selectStaff
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-select-staff
+    [selectDepartmentId]="selectDepartmentId"
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+    (selectedStaffIdEvent)="selectedStaff($event)"
+  ></app-select-staff>
+</ng-template>

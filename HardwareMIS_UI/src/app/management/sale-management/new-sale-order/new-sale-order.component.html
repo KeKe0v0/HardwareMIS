@@ -1,0 +1,118 @@
+<div>
+  <div class="row">
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">收件人</div>
+        <d-form-control class="input-area" [suffixTemplate]="suffixTemplate">
+          <input
+            dTextInput
+            placeholder="收件人"
+            class="input-control"
+            [(ngModel)]="customerId"
+            (change)="changeValue()"
+          />
+          <ng-template #suffixTemplate>
+            <div
+              (click)="openSelectCustomer()"
+              style="color: blue; cursor: pointer; padding-right: 0.2dvi"
+            >
+              选择
+            </div>
+          </ng-template>
+        </d-form-control>
+      </div>
+    </div>
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
+  <div class="add-sale-group">
+    <d-button (btnClick)="add()" bsStyle="primary" circled="true"
+      >增加</d-button
+    >
+  </div>
+  <div class="sale-group">
+    <div class="row" *ngFor="let saleitem of saleGroup; let i = index">
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">硬件编号</div>
+          <d-form-control class="input-area" [suffixTemplate]="suffixTemplate">
+            <input
+              dTextInput
+              placeholder="硬件编号"
+              class="input-control"
+              [(ngModel)]="saleitem.hardwareId"
+              (change)="changeValue()"
+            />
+          </d-form-control>
+        </div>
+      </div>
+      <ng-template #suffixTemplate>
+        <div
+          (click)="openSelectHardware(i)"
+          style="color: blue; cursor: pointer; padding-right: 0.2dvi"
+        >
+          选择
+        </div>
+      </ng-template>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">销售价格</div>
+          <div class="input-area">
+            <input
+              dTextInput
+              placeholder="销售价格"
+              class="input-control"
+              [(ngModel)]="saleitem.salePrice"
+              (change)="changeValue()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-module">
+          <div class="input-label">数量</div>
+          <div class="input-area">
+            <input
+              dTextInput
+              placeholder="数量"
+              class="input-control"
+              [(ngModel)]="saleitem.saleNumber"
+              (change)="changeValue()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="column button-column">
+        <div class="delete-sale-group">
+          <d-button (btnClick)="delete(i)" bsStyle="common" circled="true"
+            >删除</d-button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template
+  #selectCustomer
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-select-customer
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+    (selectedCustomerIdEvent)="selectedCustomer($event)"
+  ></app-select-customer>
+</ng-template>
+
+<ng-template
+  #selectHardware
+  let-modalInstance="modalInstance"
+  let-modalContentInstance="modalContentInstance"
+>
+  <app-select-hardware
+    [modalInstance]="modalInstance"
+    [modalContentInstance]="modalContentInstance"
+    (selectedHardwareIdEvent)="selectedHardware($event)"
+  ></app-select-hardware>
+</ng-template>

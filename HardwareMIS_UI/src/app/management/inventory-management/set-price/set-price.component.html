@@ -1,0 +1,32 @@
+<div>
+  <div class="row">
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">价格</div>
+        <div class="input-area">
+          <input
+            dTextInput
+            placeholder="价格"
+            class="input-control"
+            [(ngModel)]="price"
+            (change)="changeValue()"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">计价单位</div>
+        <div class="input-area">
+          <input
+            dTextInput
+            placeholder="计价单位"
+            class="input-control"
+            [(ngModel)]="unit"
+            (change)="changeValue()"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

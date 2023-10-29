@@ -1,0 +1,98 @@
+<div style="height: 40dvi">
+  <div class="row">
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">姓名</div>
+        <div class="input-area">
+          <input
+            dTextInput
+            placeholder="姓名"
+            class="input-control"
+            [(ngModel)]="name"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">联系电话</div>
+        <div class="input-area">
+          <input
+            dTextInput
+            placeholder="联系电话"
+            class="input-control"
+            [(ngModel)]="telephone"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">地址</div>
+        <div class="input-area">
+          <input
+            dTextInput
+            placeholder="地址"
+            class="input-control"
+            [(ngModel)]="address"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="input-module">
+        <div class="input-label">邮箱</div>
+        <div class="input-area">
+          <input
+            dTextInput
+            placeholder="邮箱"
+            class="input-control"
+            [(ngModel)]="email"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-button" style="padding-top: unset">
+    <d-button class="button-control" (btnClick)="newCustomer()">添加</d-button>
+  </div>
+
+  <div>
+    <d-data-table
+      [dataSource]="customerList"
+      [scrollable]="true"
+      [tableWidthConfig]="tableWidthConfig"
+      [tableOverflowType]="'overlay'"
+    >
+      <thead dTableHead>
+        <tr dTableRow>
+          <th dHeadCell></th>
+          <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">
+            {{ colOption.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody dTableBody>
+        <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+          <tr
+            dTableRow
+            [ngClass]="{
+              'table-row-selected': rowItem['customerId'] === selectedCustomerId
+            }"
+          >
+            <td dTableCell (click)="rowSelect(rowItem['customerId'])">
+              {{ rowIndex + 1 }}
+            </td>
+            <td
+              dTableCell
+              *ngFor="let colOption of dataTableOptions.columns"
+              (click)="rowSelect(rowItem['customerId'])"
+            >
+              {{ rowItem[colOption.field] }}
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </d-data-table>
+  </div>
+</div>
